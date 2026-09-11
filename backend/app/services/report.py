@@ -73,10 +73,10 @@ class ReportGenerator:
         elements = []
 
         # 1. Header Banner
-        elements.append(Paragraph("GOVERNMENT OF INDIA &bull; NATIONAL TECHNICAL RESEARCH ORGANISATION", header_sub_style))
+        elements.append(Paragraph("SATELLITE THERMAL SURVEILLANCE &bull; INDUSTRIAL MONITORING COMMAND", header_sub_style))
         elements.append(Spacer(1, 4))
-        elements.append(Paragraph("FIREWATCH AI &mdash; THERMAL ANOMALY & INDUSTRIAL COMPLIANCE REPORT", header_title_style))
-        elements.append(Paragraph("SIH26162 Automated Intelligence Dossier &bull; NASA FIRMS &times; OpenStreetMap Analytics", header_sub_style))
+        elements.append(Paragraph("LALIFIREWATCH &mdash; THERMAL ANOMALY & INDUSTRIAL COMPLIANCE REPORT", header_title_style))
+        elements.append(Paragraph("Automated Satellite Intelligence Dossier &bull; NASA FIRMS &times; OpenStreetMap Analytics", header_sub_style))
         elements.append(Spacer(1, 10))
         elements.append(HRFlowable(width="100%", thickness=2, color=colors.HexColor('#0284c7'), spaceAfter=12))
 
@@ -239,11 +239,11 @@ class ReportGenerator:
         # 7. Official Sign-off
         signoff_data = [
             [
-                Paragraph("<b>Automated System:</b> FireWatch AI Engine v1.0", body_style),
+                Paragraph("<b>Automated System:</b> LaliFireWatch Platform v1.0", body_style),
                 Paragraph("<b>Supervisory Review:</b> ___________________________", body_style)
             ],
             [
-                Paragraph("<b>Sponsor:</b> NTRO / SIH26162 Protocol", body_style),
+                Paragraph("<b>Protocol:</b> Autonomous Surveillance Standard", body_style),
                 Paragraph("<b>Official Seal & Timestamp:</b> Verified Autonomous AI Run", body_style)
             ]
         ]

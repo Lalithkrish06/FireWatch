@@ -65,11 +65,11 @@ export default function StatsOverview({ stats, onClose }) {
             </div>
             <div>
               <h2 className="text-lg font-bold text-white tracking-wide flex items-center gap-2">
-                FireWatch AI &mdash; Mission Intelligence Dashboard
+                LaliFireWatch &mdash; Mission Intelligence Dashboard
                 <Sparkles className="w-4 h-4 text-amber-400" />
               </h2>
               <p className="text-xs text-slate-400">
-                SIH26162 (NTRO) Active Satellite Telemetry & Thermal Persistence Analytics
+                Advanced Satellite Telemetry &amp; Thermal Persistence Analytics
               </p>
             </div>
           </div>
@@ -131,10 +131,10 @@ export default function StatsOverview({ stats, onClose }) {
             <div className="space-y-1.5">
               <div className="font-bold text-cyan-300 flex items-center gap-2 text-sm">
                 <Award className="w-4 h-4 text-amber-400" />
-                Smart India Hackathon Value Pitch (SIH26162 / NTRO)
+                Mission Intelligence &amp; Strategic Value Analysis
               </div>
               <p className="text-slate-300 leading-relaxed max-w-3xl">
-                NASA FIRMS treats every thermal detection as a generic wildfire alert. FireWatch AI fuses high-resolution OpenStreetMap industrial polygons with a 30-day spatio-temporal persistence tracker and Random Forest classification to separate transient crop burning and wildfires from genuine industrial non-compliance, achieving a <b>{stats.false_positive_reduction_pct}% reduction in false industrial alarms</b> with explainable decision attribution.
+                NASA FIRMS treats every thermal detection as a generic wildfire alert. LaliFireWatch fuses high-resolution OpenStreetMap industrial polygons with a 30-day spatio-temporal persistence tracker and Random Forest classification to separate transient crop burning and wildfires from genuine industrial non-compliance, achieving a <b>{stats.false_positive_reduction_pct}% reduction in false industrial alarms</b> with explainable decision attribution.
               </p>
             </div>
             <div className="bg-slate-900/90 border border-cyan-500/50 px-4 py-3 rounded-xl text-center font-mono whitespace-nowrap shadow-lg shadow-cyan-950/40">

@@ -133,9 +133,9 @@ function generatePrintableIncidentDossier(hotspot) {
       <table class="header-table">
         <tr>
           <td>
-            <div class="subtitle">Government of India &bull; Smart India Hackathon SIH26162</div>
-            <div class="title">National Technical Research Organisation (NTRO)</div>
-            <div class="subtitle">FireWatch AI &bull; Satellite Thermal Anomaly Dossier</div>
+            <div class="subtitle">Autonomous Satellite Surveillance &bull; Thermal Intelligence</div>
+            <div class="title">Industrial Thermal Monitoring Command</div>
+            <div class="subtitle">LaliFireWatch AI &bull; Satellite Thermal Anomaly Dossier</div>
           </td>
           <td style="text-align: right;">
             <div class="badge">${hotspot.category}</div>
@@ -174,11 +174,11 @@ function generatePrintableIncidentDossier(hotspot) {
 
       <div class="section-title">4. Ground Context & Description</div>
       <p style="font-size: 12px; color: #334155; background: #f8fafc; padding: 10px; border: 1px solid #e2e8f0; border-radius: 4px;">
-        ${hotspot.description || fac.description || 'Active industrial surveillance sector verified under NTRO monitoring criteria.'}
+        ${hotspot.description || fac.description || 'Active industrial surveillance sector verified under autonomous monitoring criteria.'}
       </p>
 
       <div class="footer">
-        Confidential Incident Intelligence &bull; Produced by FireWatch AI System &bull; NTRO SIH26162
+        Confidential Incident Intelligence &bull; Produced by LaliFireWatch AI Platform &bull; Satellite Surveillance Protocol
       </div>
     </body>
     </html>

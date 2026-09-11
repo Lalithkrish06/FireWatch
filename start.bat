@@ -1,6 +1,6 @@
 @echo off
 echo ======================================================================
-echo   FIREWATCH AI - Command Center Launch (SIH26162 / NTRO)
+echo   LALIFIREWATCH - Satellite Thermal Surveillance Platform
 echo ======================================================================
 echo.
 

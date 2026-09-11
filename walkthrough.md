@@ -1,8 +1,7 @@
-# FireWatch AI - Prototype Walkthrough & Verification
+# LaliFireWatch - Prototype Walkthrough & Verification
 
-**Smart India Hackathon Problem Statement**: SIH26162  
-**Sponsor**: National Technical Research Organisation (NTRO)  
-**System**: FireWatch AI — AI-Powered Industrial Fire & Thermal Persistence Platform
+**Platform**: LaliFireWatch — AI-Powered Industrial Fire & Thermal Persistence Platform  
+**Architecture**: Autonomous Satellite Telemetry & Spatial Intelligence Engine
 
 ---
 

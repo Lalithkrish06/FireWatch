@@ -10,8 +10,8 @@ logging.basicConfig(
 logger = logging.getLogger("firewatch.main")
 
 app = FastAPI(
-    title="FireWatch AI - Satellite Industrial Fire & Thermal Persistence Platform",
-    description="AI-based detection, classification, and persistence monitoring of industrial fires and gas flares (SIH26162 / NTRO).",
+    title="LaliFireWatch - Satellite Industrial Fire & Thermal Persistence Platform",
+    description="AI-based detection, classification, and persistence monitoring of industrial fires and gas flares.",
     version="1.0.0"
 )
 
@@ -29,15 +29,15 @@ app.include_router(api_router, prefix="/api")
 
 @app.on_event("startup")
 async def startup_event():
-    logger.info("Starting FireWatch AI Backend Services...")
+    logger.info("Starting LaliFireWatch Backend Services...")
     ensure_initialized()
-    logger.info("FireWatch AI ready to serve satellite thermal intelligence.")
+    logger.info("LaliFireWatch ready to serve satellite thermal intelligence.")
 
 @app.get("/")
 def root():
     return {
-        "service": "FireWatch AI API",
-        "problem_statement": "SIH26162 - NTRO",
+        "service": "LaliFireWatch API",
+        "platform": "Autonomous Satellite Thermal Surveillance",
         "status": "ONLINE",
         "docs": "/docs",
         "endpoints": [
