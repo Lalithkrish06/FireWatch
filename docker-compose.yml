@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # Optional PostGIS Spatial Database
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: firewatch-postgis
+    environment:
+      POSTGRES_USER: firewatch
+      POSTGRES_PASSWORD: firewatch_secret
+      POSTGRES_DB: firewatch_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # Python FastAPI Backend with Random Forest & Spatial Engine
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: firewatch-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - NASA_FIRMS_MAP_KEY=${NASA_FIRMS_MAP_KEY:-}
+      - DATABASE_URL=postgresql://firewatch:firewatch_secret@db:5432/firewatch_db
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  # React + Vite Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: firewatch-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  postgis_data:

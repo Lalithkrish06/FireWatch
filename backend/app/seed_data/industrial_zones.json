@@ -1,0 +1,388 @@
+[
+  {
+    "id": "ind-od-01",
+    "name": "Tata Steel Plant Kalinganagar",
+    "type": "steel_plant",
+    "landuse": "industrial",
+    "state": "Odisha",
+    "district": "Jajpur",
+    "center": [
+      20.957,
+      86.012
+    ],
+    "polygon": [
+      [
+        20.948,
+        86.002
+      ],
+      [
+        20.966,
+        86.002
+      ],
+      [
+        20.966,
+        86.022
+      ],
+      [
+        20.948,
+        86.022
+      ],
+      [
+        20.948,
+        86.002
+      ]
+    ],
+    "tags": {
+      "man_made": "works",
+      "industrial": "steel",
+      "operator": "Tata Steel Ltd"
+    }
+  },
+  {
+    "id": "ind-od-02",
+    "name": "Jindal Steel & Power Integrated Complex",
+    "type": "steel_plant",
+    "landuse": "industrial",
+    "state": "Odisha",
+    "district": "Angul",
+    "center": [
+      20.845,
+      85.12
+    ],
+    "polygon": [
+      [
+        20.835,
+        85.105
+      ],
+      [
+        20.855,
+        85.105
+      ],
+      [
+        20.855,
+        85.135
+      ],
+      [
+        20.835,
+        85.135
+      ],
+      [
+        20.835,
+        85.105
+      ]
+    ],
+    "tags": {
+      "man_made": "works",
+      "industrial": "steel_and_power",
+      "operator": "JSPL"
+    }
+  },
+  {
+    "id": "ind-od-03",
+    "name": "Rourkela Steel Plant (SAIL)",
+    "type": "steel_plant",
+    "landuse": "industrial",
+    "state": "Odisha",
+    "district": "Sundargarh",
+    "center": [
+      22.215,
+      84.86
+    ],
+    "polygon": [
+      [
+        22.202,
+        84.845
+      ],
+      [
+        22.228,
+        84.845
+      ],
+      [
+        22.228,
+        84.875
+      ],
+      [
+        22.202,
+        84.875
+      ],
+      [
+        22.202,
+        84.845
+      ]
+    ],
+    "tags": {
+      "man_made": "works",
+      "industrial": "metallurgy",
+      "operator": "SAIL"
+    }
+  },
+  {
+    "id": "ind-jh-01",
+    "name": "Jharia Coalfield Seam Fire Zone (Lodna/Tisra)",
+    "type": "coal_mine_fire",
+    "landuse": "quarry",
+    "state": "Jharkhand",
+    "district": "Dhanbad",
+    "center": [
+      23.742,
+      86.418
+    ],
+    "polygon": [
+      [
+        23.73,
+        86.405
+      ],
+      [
+        23.755,
+        86.405
+      ],
+      [
+        23.755,
+        86.432
+      ],
+      [
+        23.73,
+        86.432
+      ],
+      [
+        23.73,
+        86.405
+      ]
+    ],
+    "tags": {
+      "landuse": "quarry",
+      "mining": "coal_open_cast",
+      "subsurface_fire": "active"
+    }
+  },
+  {
+    "id": "ind-jh-02",
+    "name": "Kusunda-Bastacolla Coal Mining Fire Cluster",
+    "type": "coal_mine_fire",
+    "landuse": "quarry",
+    "state": "Jharkhand",
+    "district": "Dhanbad",
+    "center": [
+      23.771,
+      86.402
+    ],
+    "polygon": [
+      [
+        23.76,
+        86.39
+      ],
+      [
+        23.782,
+        86.39
+      ],
+      [
+        23.782,
+        86.415
+      ],
+      [
+        23.76,
+        86.415
+      ],
+      [
+        23.76,
+        86.39
+      ]
+    ],
+    "tags": {
+      "landuse": "quarry",
+      "mining": "coal_underground_seam",
+      "hazard": "high"
+    }
+  },
+  {
+    "id": "ind-gj-01",
+    "name": "Jamnagar Mega Refinery & Flare Tower Complex",
+    "type": "oil_refinery",
+    "landuse": "industrial",
+    "state": "Gujarat",
+    "district": "Jamnagar",
+    "center": [
+      22.355,
+      69.87
+    ],
+    "polygon": [
+      [
+        22.34,
+        69.85
+      ],
+      [
+        22.37,
+        69.85
+      ],
+      [
+        22.37,
+        69.89
+      ],
+      [
+        22.34,
+        69.89
+      ],
+      [
+        22.34,
+        69.85
+      ]
+    ],
+    "tags": {
+      "man_made": "works",
+      "industrial": "oil_refinery",
+      "operator": "Reliance Industries"
+    }
+  },
+  {
+    "id": "ind-gj-02",
+    "name": "Hazira Petrochemical & Heavy Industry Corridor",
+    "type": "petrochemical",
+    "landuse": "industrial",
+    "state": "Gujarat",
+    "district": "Surat",
+    "center": [
+      21.125,
+      72.67
+    ],
+    "polygon": [
+      [
+        21.11,
+        72.65
+      ],
+      [
+        21.14,
+        72.65
+      ],
+      [
+        21.14,
+        72.69
+      ],
+      [
+        21.11,
+        72.69
+      ],
+      [
+        21.11,
+        72.65
+      ]
+    ],
+    "tags": {
+      "landuse": "industrial",
+      "industrial": "petrochemical_and_lng"
+    }
+  },
+  {
+    "id": "ind-up-01",
+    "name": "Sikandrabad Brick Kiln Belt",
+    "type": "brick_kiln_cluster",
+    "landuse": "industrial",
+    "state": "Uttar Pradesh",
+    "district": "Bulandshahr",
+    "center": [
+      28.45,
+      77.65
+    ],
+    "polygon": [
+      [
+        28.435,
+        77.635
+      ],
+      [
+        28.465,
+        77.635
+      ],
+      [
+        28.465,
+        77.665
+      ],
+      [
+        28.435,
+        77.665
+      ],
+      [
+        28.435,
+        77.635
+      ]
+    ],
+    "tags": {
+      "industrial": "brick_kiln",
+      "compliance": "frequent_non_compliant_firing"
+    }
+  },
+  {
+    "id": "agri-pb-01",
+    "name": "Sangrur Agricultural Belt",
+    "type": "farmland",
+    "landuse": "farmland",
+    "state": "Punjab",
+    "district": "Sangrur",
+    "center": [
+      30.245,
+      75.845
+    ],
+    "polygon": [
+      [
+        30.22,
+        75.81
+      ],
+      [
+        30.27,
+        75.81
+      ],
+      [
+        30.27,
+        75.88
+      ],
+      [
+        30.22,
+        75.88
+      ],
+      [
+        30.22,
+        75.81
+      ]
+    ],
+    "tags": {
+      "landuse": "farmland",
+      "crop": "paddy_wheat"
+    }
+  },
+  {
+    "id": "for-od-01",
+    "name": "Simlipal Biosphere Reserve Core",
+    "type": "forest_reserve",
+    "landuse": "forest",
+    "state": "Odisha",
+    "district": "Mayurbhanj",
+    "center": [
+      21.85,
+      86.35
+    ],
+    "polygon": [
+      [
+        21.8,
+        86.3
+      ],
+      [
+        21.9,
+        86.3
+      ],
+      [
+        21.9,
+        86.4
+      ],
+      [
+        21.8,
+        86.4
+      ],
+      [
+        21.8,
+        86.3
+      ]
+    ],
+    "tags": {
+      "leisure": "nature_reserve",
+      "natural": "wood"
+    }
+  }
+]
