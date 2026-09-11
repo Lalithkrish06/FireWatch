@@ -1,4 +1,4 @@
-// Futuristic Web Audio Synthesizer for FireWatch AI (zero external asset dependencies)
+// Futuristic Web Audio Synthesizer & Speech Engine for LaliFireWatch
 
 let audioCtx = null;
 let soundEnabled = true;
@@ -22,12 +22,32 @@ export function isSoundEnabled() {
 
 export function setSoundEnabled(val) {
   soundEnabled = val;
+  if (val && audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+/**
+ * Text-to-Speech Voice announcement for tactical alerts
+ */
+export function speakVoice(text) {
+  if (!soundEnabled || typeof window === 'undefined' || !window.speechSynthesis) return;
+  try {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 1.05;
+    utterance.pitch = 1.05;
+    utterance.volume = 0.85;
+    window.speechSynthesis.speak(utterance);
+  } catch (e) {
+    // Ignore speech errors if unsupported
+  }
 }
 
 /**
  * High-tech sonar blip when selecting or inspecting a hotspot.
  */
-export function playSonarPing(freq = 880, duration = 0.12) {
+export function playSonarPing(freq = 880, duration = 0.14) {
   if (!soundEnabled) return;
   try {
     const ctx = getAudioContext();
@@ -40,7 +60,7 @@ export function playSonarPing(freq = 880, duration = 0.12) {
     osc.frequency.setValueAtTime(freq, ctx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(freq * 1.5, ctx.currentTime + duration);
 
-    gain.gain.setValueAtTime(0.04, ctx.currentTime);
+    gain.gain.setValueAtTime(0.12, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
 
     osc.connect(gain);
@@ -67,17 +87,50 @@ export function playAlertChirp() {
     const gain = ctx.createGain();
 
     osc.type = 'triangle';
-    osc.frequency.setValueAtTime(640, now);
-    osc.frequency.setValueAtTime(960, now + 0.08);
+    osc.frequency.setValueAtTime(680, now);
+    osc.frequency.setValueAtTime(980, now + 0.08);
 
-    gain.gain.setValueAtTime(0.05, now);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
+    gain.gain.setValueAtTime(0.14, now);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.24);
 
     osc.connect(gain);
     gain.connect(ctx.destination);
 
     osc.start();
-    osc.stop(now + 0.22);
+    osc.stop(now + 0.24);
+  } catch (e) {
+    // Ignore audio errors
+  }
+}
+
+/**
+ * Uplifting melodic 3-tone chime for success, download, and toggle actions.
+ */
+export function playSuccessChime() {
+  if (!soundEnabled) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major triad
+    const now = ctx.currentTime;
+
+    notes.forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+
+      gain.gain.setValueAtTime(0.12, now + idx * 0.07);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.07 + 0.22);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(now + idx * 0.07);
+      osc.stop(now + idx * 0.07 + 0.22);
+    });
   } catch (e) {
     // Ignore audio errors
   }

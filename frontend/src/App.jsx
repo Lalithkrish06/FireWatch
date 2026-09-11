@@ -228,6 +228,7 @@ export default function App() {
         activeTab={activeTab}
         onTabChange={setActiveTab}
         totalHotspotsCount={filteredHotspots.length}
+        hotspots={filteredHotspots.length > 0 ? filteredHotspots : allHotspots}
       />
 
       {/* Animated Live Satellite Telemetry Ticker Feed */}

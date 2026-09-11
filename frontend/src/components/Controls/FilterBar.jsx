@@ -5,7 +5,7 @@ import {
   Activity, ShieldCheck
 } from 'lucide-react';
 import { getCsvExportUrl } from '../../services/api';
-import { isSoundEnabled, setSoundEnabled, playSonarPing } from '../../services/sound';
+import { isSoundEnabled, setSoundEnabled, playSonarPing, playSuccessChime, speakVoice } from '../../services/sound';
 
 const CATEGORIES = [
   'All',
@@ -52,15 +52,103 @@ export default function FilterBar({
   onOpenIngestModal,
   activeTab,
   onTabChange,
-  totalHotspotsCount = 0
+  totalHotspotsCount = 0,
+  hotspots = []
 }) {
   const [soundOn, setSoundOn] = useState(isSoundEnabled());
+  const [toastMessage, setToastMessage] = useState(null);
+
+  const showToast = (msg) => {
+    setToastMessage(msg);
+    setTimeout(() => {
+      setToastMessage((prev) => (prev === msg ? null : prev));
+    }, 4500);
+  };
 
   const handleToggleSound = () => {
     const nextVal = !soundOn;
     setSoundOn(nextVal);
     setSoundEnabled(nextVal);
-    if (nextVal) playSonarPing(880, 0.1);
+    if (nextVal) {
+      playSuccessChime();
+      speakVoice("LaliFireWatch audio telemetry active.");
+      showToast("🔊 Audio Telemetry Enabled: Radar Sonar Pings & Fire Voice Alerts Active");
+    } else {
+      speakVoice("Audio muted.");
+      showToast("🔇 Audio Telemetry Muted");
+    }
+  };
+
+  const handleDownloadCsv = (e) => {
+    e.preventDefault();
+    playSuccessChime();
+    speakVoice("Downloading satellite telemetry dataset.");
+
+    const exportData = hotspots && hotspots.length > 0 ? hotspots : [];
+
+    const generateAndDownload = (dataList) => {
+      if (!dataList || dataList.length === 0) {
+        showToast("⚠️ No telemetry data available to export.");
+        return;
+      }
+
+      const headers = [
+        'Hotspot ID', 'Latitude', 'Longitude', 'Category', 'Confidence (%)',
+        'FRP (MW)', 'Brightness (K)', 'State', 'District', 'Date', 'Time (UTC)',
+        'Day/Night', '30-Day Recurrence', 'Is Persistent', 'Facility Name',
+        'Perimeter Distance (m)', 'Site Description'
+      ];
+
+      const rows = dataList.map((s) => {
+        const fac = s.nearest_facility || {};
+        const state = s.state || fac.state || 'India';
+        const district = s.district || fac.district || 'General';
+        const desc = (s.description || fac.description || '').replace(/"/g, '""');
+        const facName = (fac.name || 'Unmapped').replace(/"/g, '""');
+
+        return [
+          `"${s.id}"`,
+          s.latitude,
+          s.longitude,
+          `"${s.category}"`,
+          Math.round(s.confidence),
+          s.frp,
+          s.brightness,
+          `"${state}"`,
+          `"${district}"`,
+          `"${s.acq_date}"`,
+          `"${s.acq_time || '10:30'}"`,
+          `"${s.daynight === 'N' ? 'Night' : 'Day'}"`,
+          s.persistence_count_30d || 1,
+          s.is_persistent ? 'YES' : 'NO',
+          `"${facName}"`,
+          Math.round(fac.distance_m || 0),
+          `"${desc}"`
+        ].join(',');
+      });
+
+      const csvContent = '\uFEFF' + [headers.join(','), ...rows].join('\r\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `LaliFireWatch_Telemetry_${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      showToast(`📥 Successfully exported ${dataList.length} satellite hotspot records (CSV)`);
+    };
+
+    if (exportData.length > 0) {
+      generateAndDownload(exportData);
+    } else {
+      fetch('/data/hotspots.json')
+        .then((r) => r.json())
+        .then((data) => generateAndDownload(data || []))
+        .catch(() => showToast("❌ Unable to export telemetry records."));
+    }
   };
 
   return (
@@ -255,17 +343,17 @@ export default function FilterBar({
             <option value="streets">🗺️ OpenStreetMap</option>
           </select>
 
-          {/* Audio Synthesizer Sonar Toggle */}
+          {/* Audio Synthesizer & Voice Alert Toggle */}
           <button
             onClick={handleToggleSound}
-            className={`p-1.5 rounded-lg border transition ${
+            className={`p-2 rounded-xl border transition shadow-sm flex items-center justify-center cursor-pointer ${
               soundOn
-                ? 'bg-cyan-950/80 border-cyan-500/80 text-cyan-300'
+                ? 'bg-cyan-950/90 border-cyan-500 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.35)]'
                 : 'bg-slate-900 border-slate-800 text-slate-500 hover:text-slate-300'
             }`}
-            title={soundOn ? 'Sound: ON (Cyber Sonar Pings)' : 'Sound: Muted'}
+            title={soundOn ? 'Audio: ACTIVE (Tactical Voice Alerts & Radar Pings)' : 'Audio: MUTED (Click to activate)'}
           >
-            {soundOn ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+            {soundOn ? <Volume2 className="w-4 h-4 animate-pulse" /> : <VolumeX className="w-4 h-4" />}
           </button>
 
           {/* Analytics Dashboard Trigger */}
@@ -274,22 +362,21 @@ export default function FilterBar({
               playSonarPing(950, 0.08);
               onOpenStats();
             }}
-            className="text-xs bg-gradient-to-r from-cyan-950 to-slate-900 hover:from-cyan-900 hover:to-slate-850 border border-cyan-500/60 text-cyan-300 px-3 py-1.5 rounded-lg transition font-semibold flex items-center gap-1.5 shadow"
+            className="text-xs bg-gradient-to-r from-cyan-950 to-slate-900 hover:from-cyan-900 hover:to-slate-850 border border-cyan-500/60 text-cyan-300 px-3 py-1.5 rounded-lg transition font-semibold flex items-center gap-1.5 shadow cursor-pointer"
           >
             <BarChart2 className="w-3.5 h-3.5 text-cyan-400" />
             <span>Dashboard</span>
           </button>
 
-          {/* CSV Export */}
-          <a
-            href={getCsvExportUrl()}
-            download
-            className="text-xs bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-slate-300 px-2.5 py-1.5 rounded-lg transition font-medium flex items-center gap-1"
-            title="Export full CSV report"
+          {/* Direct CSV Telemetry Export */}
+          <button
+            onClick={handleDownloadCsv}
+            className="text-xs bg-slate-900 hover:bg-slate-800 border border-slate-700/80 hover:border-cyan-500/60 text-slate-200 hover:text-cyan-300 px-2.5 py-1.5 rounded-lg transition font-medium flex items-center gap-1.5 shadow-sm cursor-pointer"
+            title="Download full Satellite Telemetry dataset as CSV"
           >
-            <Download className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">CSV</span>
-          </a>
+            <Download className="w-3.5 h-3.5 text-cyan-400" />
+            <span className="hidden md:inline font-mono">CSV</span>
+          </button>
 
           {/* Live Ingestion / NASA Key */}
           <button
@@ -304,6 +391,14 @@ export default function FilterBar({
           </button>
         </div>
       </div>
+
+      {/* Floating Tactical Notification Toast for Audio & Download Actions */}
+      {toastMessage && (
+        <div className="absolute top-14 right-4 z-[3000] bg-slate-950/95 border border-cyan-500/80 rounded-xl px-4 py-2.5 text-xs text-cyan-200 shadow-2xl animate-in fade-in slide-in-from-top-2 font-mono flex items-center gap-2 backdrop-blur-md ring-2 ring-cyan-500/20">
+          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+          <span>{toastMessage}</span>
+        </div>
+      )}
     </header>
   );
 }
