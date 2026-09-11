@@ -1,4 +1,4 @@
-# FireWatch AI
+# 🛰️ FireWatch AI
 
 > AI-powered satellite thermal intelligence platform that detects, classifies, and tracks industrial fires and persistent thermal sources across India using NASA FIRMS, OpenStreetMap, Explainable AI, and 30-Day Spatio-Temporal Analysis.
 
@@ -14,7 +14,13 @@
 
 ## 🌐 Live Platform
 
-👉 **https://lalifirewatchai.netlify.app/**
+<div align="center">
+
+<a href="https://lalifirewatchai.netlify.app/">
+  <img src="https://img.shields.io/badge/🔥%20OPEN%20LIVE%20PLATFORM-FireWatch%20AI-orange?style=for-the-badge&logo=netlify&logoColor=white" alt="Open FireWatch AI">
+</a>
+
+</div>
 
 ---
 
@@ -609,6 +615,19 @@ The live ingestion interface enables NASA FIRMS MODIS and VIIRS telemetry to be 
 
 ---
 
+## 👨‍💻 Developer
+
+**Lalith Krish**
+
+AI & Data Science Engineer
+
+📧 Email: lalithkrish2006@gmail.com
+
+💼 LinkedIn: https://www.linkedin.com/in/lalithkrish-data
+
+🐙 GitHub: https://github.com/Lalithkrish06
+
+---
 <div align="center">
 
 ### FireWatch AI
@@ -619,4 +638,7 @@ The live ingestion interface enables NASA FIRMS MODIS and VIIRS telemetry to be 
 
 </div>
 
+---
+
+### ⭐ If you found this project useful, consider giving it a Star.
 ---
