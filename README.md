@@ -911,7 +911,7 @@ This project is licensed under the **MIT License**.
 
 <div align="center">
 
-### 🚀 Lalith Krish
+### ⚡ Lalith Krish
 
 **AI & Data Science Engineer**
 
