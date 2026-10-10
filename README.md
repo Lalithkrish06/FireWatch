@@ -24,7 +24,7 @@
 
 ### 🔥 Explore FireWatch AI
 
-<a href="https://lalifirewatchai.netlify.app/">
+<a href="https://firewatchai.lalithkrish.dev/">
   <img src="https://img.shields.io/badge/🔥%20OPEN%20LIVE%20PLATFORM-FireWatch%20AI-orange?style=for-the-badge&logo=netlify&logoColor=white" alt="Open FireWatch AI">
 </a>
 
@@ -862,7 +862,7 @@ FireWatch AI can support use cases such as:
 
 <div align="center">
 
-<a href="https://lalifirewatchai.netlify.app/">
+<a href="https://firewatchai.lalithkrish.dev/">
   <img src="https://img.shields.io/badge/🔥%20Live%20Platform-orange?style=for-the-badge&logo=netlify&logoColor=white" alt="Live Platform">
 </a>
 <a href="https://github.com/Lalithkrish06/FireWatch">
